@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import net.miginfocom.swing.MigLayout;
 
-public class Form_Scripts_Generation extends javax.swing.JPanel {
+public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
 
     private javax.swing.JLabel add_row_button;
     private javax.swing.JLabel data_source_panel_label;
@@ -237,6 +237,7 @@ public class Form_Scripts_Generation extends javax.swing.JPanel {
         submit_button = new data.factory.swing.Button();
         add_row_button = new javax.swing.JLabel();
         remove_row_button = new javax.swing.JLabel();
+        panelLoading1 = new data.factory.component.PanelLoading();
 
         setBackground(new java.awt.Color(242, 242, 242));
         setPreferredSize(new java.awt.Dimension(915, 592));
@@ -318,6 +319,11 @@ public class Form_Scripts_Generation extends javax.swing.JPanel {
         data_source_panel_label.setText("Input Data Source(s) Details");
 
         submit_button.setText("Submit");
+        submit_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                submit_buttonActionPerformed(evt);
+            }
+        });
 
         add_row_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/add.png"))); // NOI18N
         add_row_button.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -376,6 +382,10 @@ public class Form_Scripts_Generation extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        setLayer(panel_inputs1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(panel_inputs2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        setLayer(panelLoading1, javax.swing.JLayeredPane.POPUP_LAYER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -384,7 +394,12 @@ public class Form_Scripts_Generation extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel_inputs1, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_inputs2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 56, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(193, Short.MAX_VALUE)
+                    .addComponent(panelLoading1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(173, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,6 +409,11 @@ public class Form_Scripts_Generation extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(panel_inputs2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(89, 89, 89))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addContainerGap(118, Short.MAX_VALUE)
+                    .addComponent(panelLoading1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(103, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -407,5 +427,23 @@ public class Form_Scripts_Generation extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel add_row_button;
+    private javax.swing.JLabel data_source_panel_label;
+    private data.factory.swing.Table data_sources_table;
+    private data.factory.swing.PanelBorder environments_panel;
+    private javax.swing.JLabel environments_panel_label;
+    private data.factory.swing.PanelBorder layers_panel;
+    private javax.swing.JLabel layers_panel_label;
+    private data.factory.component.PanelEnvironments panelEnvironments;
+    private data.factory.component.PanelLayers panelLayers;
+    private data.factory.component.PanelLoading panelLoading1;
+    private data.factory.component.PanelParametters panelParametters;
+    private javax.swing.JPanel panel_inputs1;
+    private data.factory.swing.PanelBorder panel_inputs2;
+    private data.factory.swing.PanelBorder parametters_panel;
+    private javax.swing.JLabel parametters_panel_label;
+    private javax.swing.JLabel remove_row_button;
+    private javax.swing.JScrollPane spTable;
+    private data.factory.swing.Button submit_button;
     // End of variables declaration//GEN-END:variables
 }
