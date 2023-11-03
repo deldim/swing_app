@@ -29,7 +29,9 @@ public class Menu extends javax.swing.JPanel {
     }
 
     private void init() {
+        listMenu1.addItem(new Model_Menu("upload", "Upload Access metadata", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("1", "Generate scripts", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("cr", "Create Costum Role", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("2", "Execute scripts", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("3", "Manage Hvault Roles", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("4", "List Postgres Groups", Model_Menu.MenuType.MENU));

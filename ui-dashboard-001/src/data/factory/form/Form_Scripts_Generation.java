@@ -11,25 +11,12 @@ import net.miginfocom.swing.MigLayout;
 public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
 
     private javax.swing.JLabel add_row_button;
-    private javax.swing.JLabel data_source_panel_label;
     private data.factory.swing.Table data_sources_table;
-    private data.factory.swing.PanelBorder environments_panel;
-    private javax.swing.JLabel environments_panel_label;
-    private data.factory.swing.PanelBorder layers_panel;
-    private javax.swing.JLabel layers_panel_label;
-    private data.factory.component.PanelEnvironments panelEnvironments;
-    private data.factory.component.PanelLayers panelLayers;
-    private data.factory.component.PanelParametters panelParametters;
-    private javax.swing.JPanel panel_inputs1;
-    private data.factory.swing.PanelBorder panel_inputs2;
-    private data.factory.swing.PanelBorder parametters_panel;
-    private javax.swing.JLabel parametters_panel_label;
     private javax.swing.JLabel remove_row_button;
     private javax.swing.JScrollPane spTable;
-    private data.factory.swing.Button submit_button;
      
     public Form_Scripts_Generation() {
-        init();
+        initComponents();
     }
 
     private void init(){
@@ -231,13 +218,9 @@ public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
         layers_panel_label = new javax.swing.JLabel();
         panelLayers = new data.factory.component.PanelLayers();
         panel_inputs2 = new data.factory.swing.PanelBorder();
-        spTable = new javax.swing.JScrollPane();
-        data_sources_table = new data.factory.swing.Table();
         data_source_panel_label = new javax.swing.JLabel();
         submit_button = new data.factory.swing.Button();
-        add_row_button = new javax.swing.JLabel();
-        remove_row_button = new javax.swing.JLabel();
-        panelLoading1 = new data.factory.component.PanelLoading();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
 
         setBackground(new java.awt.Color(242, 242, 242));
         setPreferredSize(new java.awt.Dimension(915, 592));
@@ -301,41 +284,23 @@ public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
 
         panel_inputs2.setBackground(new java.awt.Color(255, 255, 255));
 
-        spTable.setBorder(null);
-        spTable.setPreferredSize(new java.awt.Dimension(600, 400));
-
-        data_sources_table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Data Source", "Trigram", "Apcode", "Data Family"
-            }
-        ));
-        spTable.setViewportView(data_sources_table);
-
         data_source_panel_label.setFont(new java.awt.Font("sansserif", 1, 16)); // NOI18N
         data_source_panel_label.setForeground(new java.awt.Color(127, 127, 127));
         data_source_panel_label.setText("Input Data Source(s) Details");
 
         submit_button.setText("Submit");
+        submit_button.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                submit_buttonAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         submit_button.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submit_buttonActionPerformed(evt);
-            }
-        });
-
-        add_row_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/add.png"))); // NOI18N
-        add_row_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                add_row_buttonMouseClicked(evt);
-            }
-        });
-
-        remove_row_button.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/minus.png"))); // NOI18N
-        remove_row_button.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                remove_row_buttonMouseClicked(evt);
             }
         });
 
@@ -347,44 +312,32 @@ public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
                 .addGap(50, 50, 50)
                 .addGroup(panel_inputs2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_inputs2Layout.createSequentialGroup()
-                        .addComponent(data_source_panel_label)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(submit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
                     .addGroup(panel_inputs2Layout.createSequentialGroup()
-                        .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panel_inputs2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(panel_inputs2Layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addGroup(panel_inputs2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(remove_row_button, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(add_row_button, javax.swing.GroupLayout.Alignment.TRAILING))
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(panel_inputs2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(submit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28))))))
+                        .addComponent(data_source_panel_label)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         panel_inputs2Layout.setVerticalGroup(
             panel_inputs2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_inputs2Layout.createSequentialGroup()
                 .addGroup(panel_inputs2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_inputs2Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(add_row_button)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(remove_row_button)
-                        .addGap(57, 57, 57)
-                        .addComponent(submit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(149, 149, 149)
+                        .addComponent(submit_button, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 93, Short.MAX_VALUE))
                     .addGroup(panel_inputs2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(data_source_panel_label)
                         .addGap(18, 18, 18)
-                        .addComponent(spTable, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTabbedPane1)))
+                .addContainerGap())
         );
 
         setLayer(panel_inputs1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         setLayer(panel_inputs2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        setLayer(panelLoading1, javax.swing.JLayeredPane.POPUP_LAYER);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -394,28 +347,26 @@ public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(panel_inputs1, javax.swing.GroupLayout.PREFERRED_SIZE, 859, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(panel_inputs2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 56, Short.MAX_VALUE))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(193, Short.MAX_VALUE)
-                    .addComponent(panelLoading1, javax.swing.GroupLayout.PREFERRED_SIZE, 549, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(173, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_inputs1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                .addGap(10, 10, 10)
+                .addComponent(panel_inputs1, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(panel_inputs2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(118, Short.MAX_VALUE)
-                    .addComponent(panelLoading1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(103, Short.MAX_VALUE)))
+                .addGap(49, 49, 49))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void submit_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_buttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submit_buttonActionPerformed
+
+    private void submit_buttonAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_submit_buttonAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_submit_buttonAncestorAdded
 
     private void add_row_buttonMouseClicked(java.awt.event.MouseEvent evt) {                                            
         data_sources_table.addRow(new Object[]{"", "", "", ""});
@@ -427,23 +378,19 @@ public class Form_Scripts_Generation extends javax.swing.JLayeredPane {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel add_row_button;
     private javax.swing.JLabel data_source_panel_label;
-    private data.factory.swing.Table data_sources_table;
     private data.factory.swing.PanelBorder environments_panel;
     private javax.swing.JLabel environments_panel_label;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private data.factory.swing.PanelBorder layers_panel;
     private javax.swing.JLabel layers_panel_label;
     private data.factory.component.PanelEnvironments panelEnvironments;
     private data.factory.component.PanelLayers panelLayers;
-    private data.factory.component.PanelLoading panelLoading1;
     private data.factory.component.PanelParametters panelParametters;
     private javax.swing.JPanel panel_inputs1;
     private data.factory.swing.PanelBorder panel_inputs2;
     private data.factory.swing.PanelBorder parametters_panel;
     private javax.swing.JLabel parametters_panel_label;
-    private javax.swing.JLabel remove_row_button;
-    private javax.swing.JScrollPane spTable;
     private data.factory.swing.Button submit_button;
     // End of variables declaration//GEN-END:variables
 }
